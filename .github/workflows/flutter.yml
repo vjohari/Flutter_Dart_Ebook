@@ -1,8 +1,8 @@
 name: Flutter Dart Build
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]
+#  push:
+#    branches: [ "main" ]
 
 jobs:
   build:
@@ -35,5 +35,3 @@ jobs:
       
     - name: Running flutter build appbundle
       run: flutter build appbundle
-        with:
-          sarif_file: ./gh-fortify-sast.sarif
