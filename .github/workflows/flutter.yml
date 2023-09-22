@@ -1,0 +1,40 @@
+name: Flutter Dart Build
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # Use the appropriate runner for building your source code.
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Insalling Java 11
+      uses: actions/setup-java@v2
+      with:
+       distribution: 'zulu'
+       java-version: '11'
+       
+    - name: Flutter Actions 
+      uses: subosito/flutter-action@v2
+      with:
+       flutter-version: '3.7.7'
+       channel: 'stable'
+       
+    - name: Running flutter pub get
+      run: flutter pub get
+      
+    - name: Running flutter test
+      run: flutter test
+      
+    - name: Running flutter build apk      
+      run: flutter build apk
+      
+    - name: Running flutter build appbundle
+      run: flutter build appbundle
